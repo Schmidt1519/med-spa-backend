@@ -1,22 +1,17 @@
 from rest_framework import serializers
-from .models import Role
-from .models import User
-from .models import Service
-from .models import Review
-from .models import Appointment
-from .models import Payment
+from .models import Client, Appointment, Service, Review, Membership, Cart, Payment
 
 
-class RoleSerializer(serializers.ModelSerializer):
+class ClientSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Role
-        fields = ['id', 'role_type']
+        model = Client
+        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'phone']
 
 
-class UserSerializer(serializers.ModelSerializer):
+class AppointmentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ['id', 'role', 'username', 'first_name' 'last_name', 'email_address', 'phone_number']
+        model = Appointment
+        fields = ['id', 'client', 'service', 'date', 'start_time', 'end_time', 'is_available']
 
 
 class ServiceSerializer(serializers.ModelSerializer):
@@ -28,16 +23,22 @@ class ServiceSerializer(serializers.ModelSerializer):
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
-        fields = ['id', 'user', 'service', 'rating', 'review']
+        fields = ['id', 'service', 'rating', 'review']
 
 
-class AppointmentSerializer(serializers.ModelSerializer):
+class MembershipSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Appointment
-        fields = ['id', 'user', 'service', 'date', 'start_time', 'end_time', 'is_available']
+        model = Membership
+        fields = ['id', 'client', 'type', 'detail', 'price']
+
+
+class CartSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cart
+        fields = ['id', 'client', 'membership', 'quantity']
 
 
 class PaymentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payment
-        fields = ['id', 'appointment', 'payment_type', 'total']
+        fields = ['id', 'cart', 'payment_type', 'total']

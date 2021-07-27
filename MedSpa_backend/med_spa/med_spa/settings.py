@@ -35,7 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'medspa.apps.MedspaConfig'
+    'rest_framework',
+    'medspa.apps.MedspaConfig',
 ]
 
 MIDDLEWARE = [
