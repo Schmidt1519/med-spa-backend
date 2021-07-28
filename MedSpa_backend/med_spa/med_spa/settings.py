@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'medspa.apps.MedspaConfig',
-    #'authapp',
     'djoser',
 ]
 

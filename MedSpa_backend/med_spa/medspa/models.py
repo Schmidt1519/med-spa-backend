@@ -2,15 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
-# class Client(models.Model):
-#     username = models.CharField(max_length=50)
-#     password = models.CharField(max_length=50)
-#     first_name = models.CharField(max_length=50)
-#     last_name = models.CharField(max_length=50)
-#     email = models.EmailField(max_length=50, unique=True)
-#     phone = models.CharField(max_length=50)
-
-
 class User(AbstractUser):
     email = models.EmailField(verbose_name='email', max_length=100, unique=True)
     phone = models.CharField(null=True, max_length=50)
@@ -27,8 +18,8 @@ class Appointment(models.Model):
     user = models.ForeignKey('User', null=True, on_delete=models.CASCADE)
     service = models.ForeignKey('Service', null=True, on_delete=models.CASCADE)
     date = models.DateField(null=True)
-    start_time = models.DateTimeField(null=True)
-    end_time = models.DateTimeField(null=True)
+    start_time = models.TimeField(null=True)
+    end_time = models.TimeField(null=True)
     is_available = models.BooleanField(null=True, default=True)
 
 
