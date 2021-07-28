@@ -1,9 +1,9 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('clients/', views.ClientList.as_view()),
-    path('clients/<int:client>/', views.ClientDetail.as_view()),
+    path('user/', views.UserList.as_view()),
+    path('user/<int:user>/', views.UserDetail.as_view()),
     path('appointments/', views.AppointmentList.as_view()),
     path('appointments/<int:appointment>/', views.AppointmentDetail.as_view()),
     path('services/', views.ServiceList.as_view()),
@@ -16,4 +16,7 @@ urlpatterns = [
     path('carts/<int:cart>/', views.CartDetail.as_view()),
     path('payments/', views.PaymentList.as_view()),
     path('payments/<int:payment>/', views.PaymentDetail.as_view()),
+    path('', include('djoser.urls')),
+    path('', include('djoser.urls.authtoken')),
+    path('restricted/', views.restricted),
 ]

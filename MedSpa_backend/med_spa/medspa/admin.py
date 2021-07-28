@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Client, Appointment, Service, Review, Membership, Cart, Payment
+from .models import *
 
 
 # Register your models here.
-admin.site.register(Client)
+admin.site.register(User)
 admin.site.register(Appointment)
 admin.site.register(Service)
 admin.site.register(Review)

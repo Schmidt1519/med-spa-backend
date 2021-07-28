@@ -1,57 +1,64 @@
 from django.shortcuts import render
-from .models import Client, Appointment, Service, Review, Membership, Cart, Payment
-from .serializers import ClientSerializer, AppointmentSerializer, ServiceSerializer, ReviewSerializer, MembershipSerializer, CartSerializer, PaymentSerializer
+from .models import *
+from .serializers import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.http import Http404
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 
 
-class ClientList(APIView):
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def restricted(request, *args, **kwargs):
+    return Response(data="Only for Logged in User", status=status.HTTP_200_OK)
+
+class UserList(APIView):
 
     def get(self, request):
         try:
-            client = Client.objects.all()
-            serializer = ClientSerializer(client, many=True)
+            user = User.objects.all()
+            serializer = UserSerializer(user, many=True)
             return Response(serializer.data)
-        except Client.DoesNotExist:
+        except User.DoesNotExist:
             raise Http404
 
     def post(self, request):
-        serializer = ClientSerializer(data=request.data)
+        serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class ClientDetail(APIView):
+class UserDetail(APIView):
 
-    def get_object(self, client):
+    def get_object(self, user):
         try:
-            return Client.objects.get(id=client)
-        except Client.DoesNotExist:
+            return User.objects.get(id=user)
+        except User.DoesNotExist:
             raise Http404
 
-    def get(self, request, client):
+    def get(self, request, user):
         try:
-            client = self.get_object(client)
-            serializer = ClientSerializer(client)
+            user = self.get_object(user)
+            serializer = UserSerializer(user)
             return Response(serializer.data)
-        except Client.DoesNotExist:
+        except User.DoesNotExist:
             raise Http404
 
-    def put(self, request, client):
-        client = self.get_object(client)
-        serializer = ClientSerializer(client, data=request.data)
+    def put(self, request, user):
+        user = self.get_object(user)
+        serializer = UserSerializer(user, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, client):
-        client = self.get_object(client)
-        client.delete()
+    def delete(self, request, user):
+        user = self.get_object(user)
+        user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 

@@ -1,10 +1,21 @@
 from rest_framework import serializers
-from .models import Client, Appointment, Service, Review, Membership, Cart, Payment
+from djoser.serializers import UserCreateSerializer, UserSerializer
+from .models import *
 
 
-class ClientSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Client
+# class ClientSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Client
+#         fields = ['id', 'username', 'first_name', 'last_name', 'email', 'phone']
+
+# class UserSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ['id', 'username', 'first_name', 'last_name', 'email', 'phone']
+
+class UserCreateSerializer(UserCreateSerializer):
+    class Meta(UserCreateSerializer.Meta):
+        model = User
         fields = ['id', 'username', 'first_name', 'last_name', 'email', 'phone']
 
 
