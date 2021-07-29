@@ -24,13 +24,13 @@ class Appointment(models.Model):
 
 
 class Service(models.Model):
-    service_name = models.CharField(max_length=50)
-    description = models.CharField(max_length=50)
-    price = models.DecimalField(default=0, max_digits=5, decimal_places=2)
+    image = models.CharField(max_length=300)
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=300)
 
 
 class Review(models.Model):
-    service = models.ForeignKey('Service', null=True, on_delete=models.CASCADE)
+    user = models.ForeignKey('User', null=True, on_delete=models.CASCADE)
     rating = models.IntegerField()
     review = models.CharField(max_length=300)
 
@@ -45,7 +45,6 @@ class Membership(models.Model):
 class Cart(models.Model):
     user = models.ForeignKey('User', null=True, on_delete=models.CASCADE)
     membership = models.ForeignKey('Membership', null=True, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
 
 
 class Payment(models.Model):
