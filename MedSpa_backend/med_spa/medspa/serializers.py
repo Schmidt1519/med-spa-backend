@@ -31,13 +31,13 @@ class ReviewSerializer(serializers.ModelSerializer):
 class MembershipSerializer(serializers.ModelSerializer):
     class Meta:
         model = Membership
-        fields = ['id', 'user', 'type', 'detail', 'price']
+        fields = ['id', 'user', 'type', 'detail', 'price', 'is_active']
 
 
 class CartSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cart
-        fields = ['id', 'user', 'membership']
+        fields = ['id', 'user', 'membership', 'quantity']
 
 
 class PaymentSerializer(serializers.ModelSerializer):

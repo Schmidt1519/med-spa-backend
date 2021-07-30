@@ -40,11 +40,13 @@ class Membership(models.Model):
     type = models.CharField(max_length=50)
     detail = models.CharField(max_length=50)
     price = models.DecimalField(default=0, max_digits=5, decimal_places=2)
+    is_active = models.BooleanField(null=True, default=True)
 
 
 class Cart(models.Model):
     user = models.ForeignKey('User', null=True, on_delete=models.CASCADE)
     membership = models.ForeignKey('Membership', null=True, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=0)
 
 
 class Payment(models.Model):
