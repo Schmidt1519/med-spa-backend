@@ -206,6 +206,22 @@ class ReviewDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+class ReviewUser(APIView):
+    def get_object(self, user):
+        try:
+            return Review.objects.filter(user=user)
+        except User.DoesNotExist:
+            raise Http404
+
+    def get(self, request, user):
+        try:
+            review = self.get_object(user)
+            serializer = ReviewSerializer(review, many=True)
+            return Response(serializer.data)
+        except User.DoesNotExist:
+            raise Http404
+
+
 class MembershipList(APIView):
 
     def get(self, request):
@@ -254,6 +270,23 @@ class MembershipDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+class MembershipByUser(APIView):
+
+    def get_object(self, user):
+        try:
+            return Membership.objects.get(user=user)
+        except Membership.DoesNotExist:
+            raise Http404
+
+    def get(self, request, user):
+        try:
+            membership = self.get_object(user)
+            serializer = MembershipSerializer(membership)
+            return Response(serializer.data)
+        except Membership.DoesNotExist:
+            raise Http404
+
+
 class CartList(APIView):
 
     def get(self, request):
@@ -274,33 +307,32 @@ class CartList(APIView):
 
 class CartDetail(APIView):
 
-    def get_object(self, cart):
+    def get_object(self, user):
         try:
-            return Cart.objects.get(id=cart)
+            return Cart.objects.get(user=user)
         except Cart.DoesNotExist:
             raise Http404
 
-    def get(self, request, cart):
+    def get(self, request, user):
         try:
-            cart = self.get_object(cart)
+            cart = self.get_object(user)
             serializer = CartSerializer(cart)
             return Response(serializer.data)
         except Cart.DoesNotExist:
             raise Http404
 
-    def put(self, request, cart):
-        cart = self.get_object(cart)
+    def put(self, request, user):
+        cart = self.get_object(user)
         serializer = CartSerializer(cart, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, cart):
-        cart = self.get_object(cart)
+    def delete(self, request, user):
+        cart = self.get_object(user)
         cart.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
 
 
 class PaymentList(APIView):

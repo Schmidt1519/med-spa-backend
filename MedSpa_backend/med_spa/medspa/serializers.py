@@ -23,6 +23,8 @@ class ServiceSerializer(serializers.ModelSerializer):
 
 
 class ReviewSerializer(serializers.ModelSerializer):
+#    user = UserCreateSerializer(read_only=True)
+
     class Meta:
         model = Review
         fields = ['id', 'user', 'rating', 'review']
@@ -35,6 +37,8 @@ class MembershipSerializer(serializers.ModelSerializer):
 
 
 class CartSerializer(serializers.ModelSerializer):
+    membership = MembershipSerializer(read_only=True)
+
     class Meta:
         model = Cart
         fields = ['id', 'user', 'membership', 'quantity']
