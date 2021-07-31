@@ -110,6 +110,23 @@ class AppointmentDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+class AppointmentByUser(APIView):
+
+    def get_object(self, user):
+        try:
+            return Appointment.objects.get(user=user)
+        except Appointment.DoesNotExist:
+            raise Http404
+
+    def get(self, request, user):
+        try:
+            appointment = self.get_object(user)
+            serializer = AppointmentSerializer(appointment)
+            return Response(serializer.data)
+        except Appointment.DoesNotExist:
+            raise Http404
+
+
 class ServiceList(APIView):
 
     def get(self, request):
@@ -298,7 +315,7 @@ class CartList(APIView):
             raise Http404
 
     def post(self, request):
-        serializer = CartSerializer(data=request.data)
+        serializer = AddCartSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
