@@ -9,6 +9,12 @@ class UserCreateSerializer(UserCreateSerializer):
         fields = ['id', 'username', 'first_name', 'last_name', 'email', 'phone']
 
 
+class UserSerializer(UserSerializer):
+    class Meta(UserSerializer.Meta):
+        model = User
+        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'phone']
+
+
 class AppointmentSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -23,7 +29,7 @@ class ServiceSerializer(serializers.ModelSerializer):
 
 
 class ReviewSerializer(serializers.ModelSerializer):
-#    user = UserCreateSerializer(read_only=True)
+    # user = UserSerializer(read_only=True)
 
     class Meta:
         model = Review

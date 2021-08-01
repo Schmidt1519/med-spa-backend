@@ -126,6 +126,14 @@ class AppointmentByUser(APIView):
         except Appointment.DoesNotExist:
             raise Http404
 
+    def put(self, request, user):
+        appointment = self.get_object(user)
+        serializer = ServiceSerializer(appointment, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class ServiceList(APIView):
 
