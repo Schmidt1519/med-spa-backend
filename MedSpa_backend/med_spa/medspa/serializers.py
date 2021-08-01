@@ -15,21 +15,23 @@ class UserSerializer(UserSerializer):
         fields = ['id', 'username', 'first_name', 'last_name', 'email', 'phone']
 
 
-class AppointmentSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Appointment
-        fields = ['id', 'user', 'service', 'date', 'start_time', 'end_time', 'is_available']
-
-
 class ServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Service
         fields = ['id', 'image', 'name', 'description']
 
 
-class ReviewSerializer(serializers.ModelSerializer):
+class AppointmentSerializer(serializers.ModelSerializer):
     # user = UserSerializer(read_only=True)
+    service = ServiceSerializer(read_only=True)
+
+    class Meta:
+        model = Appointment
+        fields = ['id', 'user', 'service', 'date', 'start_time', 'end_time', 'is_available']
+
+
+class ReviewSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
 
     class Meta:
         model = Review
@@ -37,6 +39,8 @@ class ReviewSerializer(serializers.ModelSerializer):
 
 
 class MembershipSerializer(serializers.ModelSerializer):
+    # user = UserSerializer(read_only=True)
+
     class Meta:
         model = Membership
         fields = ['id', 'user', 'type', 'detail', 'price', 'is_active']

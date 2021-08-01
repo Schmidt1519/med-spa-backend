@@ -114,14 +114,14 @@ class AppointmentByUser(APIView):
 
     def get_object(self, user):
         try:
-            return Appointment.objects.get(user=user)
+            return Appointment.objects.filter(user=user)
         except Appointment.DoesNotExist:
             raise Http404
 
     def get(self, request, user):
         try:
             appointment = self.get_object(user)
-            serializer = AppointmentSerializer(appointment)
+            serializer = AppointmentSerializer(appointment, many=True)
             return Response(serializer.data)
         except Appointment.DoesNotExist:
             raise Http404
