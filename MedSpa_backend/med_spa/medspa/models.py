@@ -26,7 +26,7 @@ class Appointment(models.Model):
 class Service(models.Model):
     image = models.CharField(max_length=300)
     name = models.CharField(max_length=100)
-    description = models.CharField(max_length=300)
+    description = models.CharField(max_length=800)
 
 
 class Review(models.Model):

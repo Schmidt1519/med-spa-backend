@@ -7,7 +7,8 @@ from rest_framework import status
 from django.http import Http404
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
-
+import stripe
+stripe.api_key = "sk_test_51JJVo1LbC0X6EBVPy6GyGTL3ZyajKbIrcNpd7w3nYoNdmhGp0v5DoIO1JSq8GWnmJurrQasOBhRcNsGwg5mveGTn00yQlC5EjN"
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -194,7 +195,7 @@ class ReviewList(APIView):
             raise Http404
 
     def post(self, request):
-        serializer = ReviewSerializer(data=request.data)
+        serializer = AddReviewSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -407,3 +408,13 @@ class PaymentDetail(APIView):
         payment.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
+    class PaymentStripe(APIView):
+
+        def post(self, request):
+            stripe.Charge.create(
+                amount=request.data['amount'],
+                currency='usd',
+                payment_method="card_1JJVxCLbC0X6EBVPh79MhCVX",
+                receipt_email='schmidt1519@zohomail.com'
+            )

@@ -38,6 +38,13 @@ class ReviewSerializer(serializers.ModelSerializer):
         fields = ['id', 'user', 'rating', 'review']
 
 
+class AddReviewSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Review
+        fields = ['id', 'user', 'rating', 'review']
+
+
 class MembershipSerializer(serializers.ModelSerializer):
     # user = UserSerializer(read_only=True)
 
