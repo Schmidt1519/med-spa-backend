@@ -7,8 +7,9 @@ from rest_framework import status
 from django.http import Http404
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
-import stripe
-stripe.api_key = "sk_test_51JJVo1LbC0X6EBVPy6GyGTL3ZyajKbIrcNpd7w3nYoNdmhGp0v5DoIO1JSq8GWnmJurrQasOBhRcNsGwg5mveGTn00yQlC5EjN"
+from django.conf import settings
+from django.http.response import JsonResponse
+
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -409,12 +410,18 @@ class PaymentDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-    class PaymentStripe(APIView):
+    # class PaymentStripe(APIView):
+    #
+    #     def post(self, request):
+    #         stripe.Charge.create(
+    #             amount=request.data['amount'],
+    #             currency='usd',
+    #             payment_method="card_1JJVxCLbC0X6EBVPh79MhCVX",
+    #             receipt_email='schmidt1519@zohomail.com'
+    #         )
 
-        def post(self, request):
-            stripe.Charge.create(
-                amount=request.data['amount'],
-                currency='usd',
-                payment_method="card_1JJVxCLbC0X6EBVPh79MhCVX",
-                receipt_email='schmidt1519@zohomail.com'
-            )
+class StripeKey(APIView):
+
+    def get(self, request):
+        key = {'publicKey': settings.STRIPE_PUBLISHABLE_KEY}
+        return JsonResponse(key, safe=False)
