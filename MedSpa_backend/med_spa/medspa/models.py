@@ -38,7 +38,7 @@ class Review(models.Model):
 class Membership(models.Model):
     user = models.ForeignKey('User', null=True, on_delete=models.CASCADE)
     type = models.CharField(max_length=50)
-    detail = models.CharField(max_length=50)
+    detail = models.CharField(max_length=200)
     price = models.DecimalField(default=0, max_digits=5, decimal_places=2)
     is_active = models.BooleanField(null=True, default=True)
 
