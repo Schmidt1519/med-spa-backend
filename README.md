@@ -168,6 +168,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Leighton Schmidt - [@Schmidt15](https://twitter.com/schmidt15) - schmidt1519@gmail.com
 
 Backend: [https://github.com/Schmidt1519/med-spa-backend](https://github.com/Schmidt1519/med-spa-backend)
+<br />
 Frontend: [https://github.com/Schmidt1519/med-spa-frontend](https://github.com/Schmidt1519/med-spa-frontend)
 
 
