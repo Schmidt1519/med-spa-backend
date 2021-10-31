@@ -72,7 +72,6 @@
   </ol>
 </details>
 
-,
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
