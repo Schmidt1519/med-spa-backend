@@ -111,7 +111,7 @@ This is an example of how to list things you need to use the software and how to
   pip install djangorestframework
   ```
  
- ```sh
+  ```sh
   pip install mysql-connector-python==8.0.23
   ```
 
