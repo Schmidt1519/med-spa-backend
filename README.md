@@ -6,7 +6,6 @@
 -->
 
 
-
 <!-- PROJECT SHIELDS -->
 <!--
 *** I'm using markdown "reference style" links for readability.
@@ -43,7 +42,6 @@
     <a href="https://github.com/Schmidt1519/med-spa-backend/issues">Request Feature</a>
   </p>
 </p>
-
 
 
 <!-- TABLE OF CONTENTS -->
@@ -83,15 +81,18 @@ The idea of this project was inspired by a close family member looking to start 
 
 * [React.js](https://reactjs.org/)
 * [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+* [Django Rest Framework](https://www.django-rest-framework.org/)
+* [Python](https://www.python.org/)
+* [MySQL](https://www.mysql.com/)
 * [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * [React-Bootstrap](https://react-bootstrap.github.io/)
 * [React-Toastify](https://www.npmjs.com/package/react-toastify)
 * [Axios](https://axios-http.com/docs/intro)
 * [Postman](https://www.postman.com/)
+* [Djoser Auth](https://djoser.readthedocs.io/)
 * [EmailJS](https://www.emailjs.com/docs/examples/reactjs/)
 * [Stripe API](https://stripe.com/docs/api)
-
 
 
 <!-- GETTING STARTED -->
