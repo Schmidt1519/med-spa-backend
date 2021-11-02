@@ -64,7 +64,7 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
+    <!-- <li><a href="#license">License</a></li> -->
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
@@ -164,7 +164,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Leighton Schmidt - [@Schmidt15](https://twitter.com/schmidt15) - schmidt1519@gmail.com
+Leighton Schmidt | [LinkedIn](https://www.linkedin.com/in/leighton-schmidt86/) | schmidt1519@gmail.com
 
 Backend: [https://github.com/Schmidt1519/med-spa-backend](https://github.com/Schmidt1519/med-spa-backend)
 <br />
@@ -173,4 +173,5 @@ Frontend: [https://github.com/Schmidt1519/med-spa-frontend](https://github.com/S
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
-* devCodeCamp
+* devCodeCamp instructors
+* My family
